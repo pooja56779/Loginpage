@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modern Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(-45deg,#4f46e5,#06b6d4,#9333ea,#2563eb);background-size:400% 400%;animation:bg 12s ease infinite;overflow:hidden}
+@keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+body:before,body:after{content:"";position:absolute;border-radius:50%;filter:blur(60px)}
+body:before{width:280px;height:280px;background:#fff4;top:-70px;left:-70px}
+body:after{width:340px;height:340px;background:#ff4ecd55;bottom:-100px;right:-80px}
+.card{width:390px;background:rgba(255,255,255,.12);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:38px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:up .8s}
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+h2{text-align:center;color:#fff;margin-bottom:25px}
+.field{position:relative;margin:18px 0}
+.field i{position:absolute;left:15px;top:16px;color:#ddd}
+.field input{width:100%;padding:14px 45px;border:none;border-radius:12px;background:#ffffff20;color:#fff;outline:none}
+.field input::placeholder{color:#e8e8e8}
+.field input:focus{box-shadow:0 0 0 2px #7dd3fc}
+.eye{left:auto!important;right:15px;cursor:pointer}
+.row{display:flex;justify-content:space-between;font-size:13px;color:#fff;margin:10px 0 20px}
+a{color:#bff;text-decoration:none}
+button{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,#06b6d4,#2563eb);color:#fff;font-size:16px;font-weight:600;cursor:pointer;transition:.3s}
+button:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(37,99,235,.4)}
+#msg{text-align:center;margin-top:16px;font-weight:600}
+.ok{color:#86efac}.err{color:#fca5a5}
+.signup{text-align:center;color:#fff;margin-top:18px;font-size:14px}
+</style></head>
+<body>
+<div class="card">
+<h2>Welcome Back</h2>
+<form id="f">
+<div class="field"><i class="fa fa-user"></i><input id="u" placeholder="Username"></div>
+<div class="field"><i class="fa fa-lock"></i><input id="p" type="password" placeholder="Password"><i id="eye" class="fa fa-eye eye"></i></div>
+<div class="row"><label><input type="checkbox"> Remember me</label><a href="#">Forgot Password?</a></div>
+<button id="btn">Login</button>
+<div id="msg"></div>
+<div class="signup">Don't have an account? <a href="#">Register</a></div>
+</form>
+</div>
+<script>
+eye.onclick=()=>{p.type=p.type==="password"?"text":"password";eye.classList.toggle("fa-eye");eye.classList.toggle("fa-eye-slash")}
+f.onsubmit=e=>{
+e.preventDefault();
+msg.className="";
+if(!u.value||!p.value){msg.textContent="Please fill all fields.";msg.className="err";return;}
+btn.disabled=true;btn.innerHTML='<i class="fa fa-spinner fa-spin"></i> Signing In';
+setTimeout(()=>{
+if(u.value==="admin"&&p.value==="12345"){
+msg.textContent="Login Successful!";msg.className="ok";
+}else{
+msg.textContent="Invalid username or password.";msg.className="err";
+}
+btn.disabled=false;btn.textContent="Login";
+},1500);
+}
+</script>
+</body></html>
